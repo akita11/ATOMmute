@@ -1,5 +1,5 @@
 # ATOMmute
-Bluetooth Mute button for TV meeting using M5ATOM (matrix/lite)
+Bluetooth Mute button for TV meeting using M5ATOM ([lite](https://www.switch-science.com/catalog/6262/) / [matrix](https://www.switch-science.com/catalog/6260/))
 
 ## How to use
 - connect from PC to Bluetooth device of "ATOMmute" as keyboard, using passphrase of "123456" if needed. 
