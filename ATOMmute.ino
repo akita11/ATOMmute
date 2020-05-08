@@ -225,10 +225,10 @@ void loop() {
       else if (mode == 2){msg[0] = KEY_MASK_CTRL | KEY_MASK_SHIFT; msg[2] = 0x10; }// Ctrl+Shift+M for MS Teams
       input->setValue(msg, sizeof(msg));
       input->notify();
-      Serial.println("release");
-      uint8_t msg1[] = {0x0, 0x0, 0x0, 0x0,0x0,0x0,0x0,0x0};
-      input->setValue(msg1, sizeof(msg1));
-      input->notify();
+      Serial.println("release (key)");
+      msg[2] = 0; input->setValue(msg, sizeof(msg)); input->notify();
+      Serial.println("release (key2)");
+      msg[0] = 0; input->setValue(msg, sizeof(msg)); input->notify();
     }
   }
 }
