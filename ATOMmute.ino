@@ -21,6 +21,7 @@
 #include "BLEHIDDevice.h"
 #include "HIDTypes.h"
 #include "HIDKeyboardTypes.h"
+//#include "esp_wifi.h"
 
 // BLEデバイス処理
 BLEHIDDevice* hid;
@@ -41,13 +42,14 @@ void setBuff(uint8_t Rdata, uint8_t Gdata, uint8_t Bdata)
   M5.dis.displaybuff(DisBuff);
 }
 
+#define LED_BRIGHTNESS 20
 uint8_t mode = 0;
 void setDisplay(uint8_t mode)
 {
   Serial.print("mode="); Serial.println(mode);
-  if (mode == 0) setBuff(0, 50, 0);
-  else if (mode == 1) setBuff(0, 0, 50);
-  else if (mode == 2) setBuff(50, 0, 50);
+  if (mode == 0) setBuff(0, LED_BRIGHTNESS, 0);
+  else if (mode == 1) setBuff(0, 0, LED_BRIGHTNESS);
+  else if (mode == 2) setBuff(LED_BRIGHTNESS, 0, LED_BRIGHTNESS);
   else setBuff(0, 0, 0);
 }
 
@@ -196,7 +198,7 @@ void setup() {
   setDisplay(mode);
   // BLEデバイスの起動処理の開始
   xTaskCreate(taskServer, "server", 20000, NULL, 5, NULL);
-
+//  esp_wifi_stop(); // hangs up?
 }
 
 void loop() {
