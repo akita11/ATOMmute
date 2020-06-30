@@ -7,6 +7,7 @@ Bluetooth Mute button for TV meeting using M5ATOM ([lite](https://www.switch-sci
 -- Green : for WebEx (Ctrl+M)
 -- Blue  : for Zoom (Alt+A)
 -- Purple: for MS Teams (Ctrl+Shift+M)
+-- Red   : for Google Hangout (Ctrl+D)
 - Short press: mute ON/FF
 
 ## Author
