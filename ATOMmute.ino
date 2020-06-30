@@ -6,6 +6,7 @@
 // mode=0 : green (110, 190,  75) : WebEx    : Ctrl+M
 // mode=1 : blue  ( 49, 198, 237) : Zoom     : Alt+A
 // mode=2 : purple( 70,  71, 117) : MS Teams : Ctrl+Shift+M
+// mode=3 : red   (110,   0,   0) : Google Hangout : Ctrl+D
 
 // ref:
 //   https://qiita.com/poruruba/items/6e4e29068a28f5ee1711
@@ -50,6 +51,7 @@ void setDisplay(uint8_t mode)
   if (mode == 0) setBuff(0, LED_BRIGHTNESS, 0);
   else if (mode == 1) setBuff(0, 0, LED_BRIGHTNESS);
   else if (mode == 2) setBuff(LED_BRIGHTNESS, 0, LED_BRIGHTNESS);
+  else if (mode == 3) setBuff(LED_BRIGHTNESS, 0, 0);
   else setBuff(0, 0, 0);
 }
 
@@ -206,7 +208,7 @@ void loop() {
 
   if (M5.Btn.pressedFor(1000)){
     Serial.println("long press");
-    mode = (mode + 1) % 3;
+    mode = (mode + 1) % 4;
     Serial.print("mode is switched to "); Serial.println(mode);
     setDisplay(mode);
     while(M5.Btn.read() == 1) delay(10);
@@ -225,6 +227,7 @@ void loop() {
       if (mode == 0){msg[0] = KEY_MASK_CTRL; msg[2] = 0x10; }// Ctrl+M for WebEx
       else if (mode == 1){msg[0] = KEY_MASK_ALT; msg[2] = 0x04; }// Alt+A for Zoom
       else if (mode == 2){msg[0] = KEY_MASK_CTRL | KEY_MASK_SHIFT; msg[2] = 0x10; }// Ctrl+Shift+M for MS Teams
+      else if (mode == 3){msg[0] = KEY_MASK_CTRL; msg[2] = 0x07; }// Ctrl+D for GoogleHangout
       input->setValue(msg, sizeof(msg));
       input->notify();
       Serial.println("release (key)");
